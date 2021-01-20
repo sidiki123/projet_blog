@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                
-                   <div id="example">
+    <div class="row">
+        <div class="normal-table-area">
+            <div class="container">
 
-                   </div>
-                
+                <div class="row">
+                    <h1 style="font-size: 20px; color:green;">Désolé, contenu Innacessible...</h1> <br><br>
+                    <br>
+
+                </div>
+                <p>Retourner vers  <a href={{route('index')}}>la page d'accueil</a></p>
             </div>
-        </div>
-    </div>
 </div>
 @endsection

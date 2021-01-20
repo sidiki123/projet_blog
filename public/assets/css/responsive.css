@@ -1,5 +1,6 @@
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1169px) {
+	
 	.header-top-area{
 		position:unset;
 	}
@@ -122,7 +123,7 @@
 	}
 }
 
- 
+
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991px) {
 	.main-menu-area{
@@ -323,7 +324,7 @@
 	}
 }
 
- 
+
 /* small mobile :320px. */
 @media (max-width: 767px) {
 	.container {width:300px}
@@ -635,9 +636,9 @@
 	.table.table-hover > tbody > tr > td, .table.table-hover > tbody > tr > th, .table.table-hover > tfoot > tr > td, .table.table-hover > tfoot > tr > th, .table.table-hover > thead > tr > td, .table.table-hover > thead > tr > th {
 		white-space: nowrap;
 	}
-	
+
 }
- 
+
 /* Large Mobile :480px. */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
 	.container {width:450px}
@@ -683,6 +684,6 @@
 	.bread-ntd{
 		display:inline-block;
 	}
-	
+
 }
- 
+

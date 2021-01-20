@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\UsersController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Mail\ContactMessageCreated;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +22,10 @@ Route::get('/', function () {
 });
 
 Route::get('/', function () {
-    return view('template/index');
+    return view('template/index')->name('index');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/accordion','PagesController@accordion')->name('accordion');
 
@@ -35,21 +33,19 @@ Route::get('/alert','PagesController@alert')->name('alert');
 
 Route::get('/analitycs','PagesController@analitycs')->name('analitycs');
 
-Route::get('/animations','PagesController@animations')->name('animations');
+Route::get('/contacter_un_technicien','PagesController@animations')->name('animations');
 
 Route::get('/area_charts','PagesController@area_charts')->name('area_charts');
 
-Route::get('/bar_charts','PagesController@bar_charts')->name('bar_charts');
+Route::get('/formations_categorie','PagesController@bar_charts')->name('bar_charts');
 
-Route::get('/button','PagesController@button')->name('button');
+Route::get('/a-propos','PagesController@button')->name('a_propos');
 
 Route::get('/code_editor','PagesController@code_editor')->name('code_editor');
 
 Route::get('/color','PagesController@color')->name('color');
 
 Route::get('/compose_email','PagesController@compose_email')->name('compose_email');
-
-Route::get('/contact','PagesController@contact')->name('contact');
 
 Route::get('/data_map','PagesController@data_map')->name('data_map');
 
@@ -67,7 +63,7 @@ Route::get('/form_elements','PagesController@form_elements')->name('form_element
 
 Route::get('/form_examples','PagesController@form_examples')->name('form_examples');
 
-Route::get('/google_map','PagesController@google_map')->name('google_map');
+Route::get('/verifier_un_technicien','PagesController@google_map')->name('google_map');
 
 Route::get('/image_cropper','PagesController@image_cropper')->name('image_cropper');
 
@@ -99,8 +95,6 @@ Route::get('/tabs','PagesController@tabs')->name('tabs');
 
 Route::get('/tooltips','PagesController@tooltips')->name('tooltips');
 
-Route::get('/typography','PagesController@typography')->name('typography');
-
 Route::get('/view_email','PagesController@view_email')->name('view_email');
 
 Route::get('/widgets','PagesController@widgets')->name('widgets');
@@ -108,3 +102,49 @@ Route::get('/widgets','PagesController@widgets')->name('widgets');
 Route::get('/wizard','PagesController@wizard')->name('wizard');
 
 Route::get('/error','PagesController@error')->name('error');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function() {
+    Route::resource('users', 'UsersController');
+    Route::resource('offres', 'OffresController');
+    Route::resource('formations', 'FormationlistsController');
+    Route::get('/register_technicien','UsersController@tech_index')->name('technicien.register.index');
+    Route::post('postTechnicien', [UsersController::class, 'create_technicien'])->name('technicien.register.store');
+
+});
+
+Route::namespace('Technicien')->prefix('Technicien')->name('technicien.')->middleware('can:manage-posts')->group(function() {
+    Route::resource('posts', 'PostController');
+    Route::resource('commentsformation', 'commentsformationController');
+});
+
+Route::post('/comments/{post}','CommentController@store')->name('comment.store');
+
+Route::post('/commentReply/{comment}','CommentController@storeCommentReply')->name('comments.storeReply');
+
+Route::get('/ville/{region}','PagesController@villes')->name('page_ville');
+
+Route::get('/technicien/{ville}','PagesController@techs')->name('technicien_detail');
+
+Route::get('/formations/{categ}','HomeController@formations')->name('formations');
+
+Route::get('/formation_liste/{formation}','HomeController@formation_liste')->name('formation_liste');
+
+Route::get('/formation/detail/{formation_liste}','HomeController@formation_detail')->name('formation_detail');
+Route::post('/like','PagesController@like')->name('detail.like');
+
+Route::get('/recherche','PagesController@search')->name('technicien.search');
+
+Route::get('/contact','PagesController@typography')->name('typography');
+
+Route::post('/contact','PagesController@contact_form')->name('contact_form');
+
+Route::get('/offres','PagesController@offres')->name('offres');
+
+// letechnicien.agree@gmail.com
+
+
+// Route::get('test-email',function(){
+//     return new ContactMessageCreated('Sidiki','sidikiouedraogo2000@gmail.com','Juste un test de mail' );
+// });

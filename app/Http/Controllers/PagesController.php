@@ -2,16 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
+use App\User;
+use App\Offre;
+use App\Ville;
+use Validator;
+use App\Region;
+use App\Session;
+use App\Formation;
+use App\Categories;
+use App\Technicien;
+use App\FormationList;
 use Illuminate\Http\Request;
+use Rainwater\Active\Active;
+use Illuminate\Http\JsonResponse;
+use App\Mail\ContactMessageCreated;
+use App\Http\Controllers\Controller;
+use App\Post;
+use Illuminate\Support\Facades\Mail;
+use Mckenziearts\Notify\LaravelNotify;
 
 class PagesController extends Controller
 {
-    public function contact(){
-        return view('template.contact');
-    }
+
 
     public function index(){
-        return view('template.index');
+        $numberOfUsers = Active::users()->count();
+        $numberOfUsers_abonne = Active::users()->get();
+        $numberOfUsers_technicien = Active::users()->get();
+        $numberOfUsers_technicien= User::where('id_technicien',1)->get();
+        $numberOfUsers_abonne= User::where('id_abonne',1)->get();
+        // $formations = Formation::where('type_de_formation_id', $categ->id)->get();
+        $users = User::all();
+        $techniciens =Technicien::all();
+        return view('template.index',compact('techniciens','users','numberOfUsers_abonne','numberOfUsers_technicien','numberOfUsers'));
     }
 
     public function index2(){
@@ -46,13 +70,23 @@ class PagesController extends Controller
         return view('template.compose-email');
     }
 
-    public function animations(){
-        return view('template.animations');
+    public function button(){
+        return view('template.buttons');
     }
 
-    public function google_map(){
-        return view('template.google-map');
+
+
+    public function villes(region $region){
+        $villes = Ville::where('region_id', $region->id)->get();
+        return view('template.villes.index',compact('villes'));
     }
+
+    public function techs(ville $ville) {
+        $techniciens = Technicien::where('ville_id', $ville->id)->get();
+        return view('template.techniciens.index',compact('techniciens'));
+    }
+
+
 
     public function data_map(){
         return view('template.data-map');
@@ -75,7 +109,8 @@ class PagesController extends Controller
     }
 
     public function bar_charts(){
-        return view('template.bar-charts');
+        $categs = Categories::all();
+        return view('template.bar-charts',compact('categs'));
     }
 
     public function line_charts(){
@@ -105,7 +140,7 @@ class PagesController extends Controller
     public function form_examples(){
         return view('template.form-examples.');
     }
-    
+
     public function notification(){
         return view('template.notification');
     }
@@ -163,8 +198,71 @@ class PagesController extends Controller
         return view('template.404');
     }
 
-   
+    public function offres(){
+        $offres = Offre::all();
+        return view('template.offres.index',compact('offres'));
+    }
+
+    public function like():JsonResponse {
+        $formation_liste = FormationList::find(request()->id);
+
+        if ($formation_liste->isLikedByLoggedInUser()) {
+            $res = Like::where([
+                'user_id' => auth()->user()->id,
+                'formation_list_id' => request()->id
+            ])->delete();
+
+            if ($res) {
+                return response()->json([
+                    'count' =>FormationList::find(request()->id)->likes->count()
+                ]);
+            }
+
+        } else {
+            $like = new Like();
+            $like->user_id = auth()->user()->id;
+            $like->formation_list_id = request()->id;
+            $like->save();
+
+            return response()->json([
+                'count' => FormationList::find(request()->id)->likes->count()
+            ]);
+        }
+    }
+
+    public function google_map(){
+        return view('template.google-map');
+    }
+
+    public function animations(){
+        $regions = Region::all();
+        return view('template.animations',compact('regions'));
+    }
+
+    public function search(){
+        request()->validate([
+            'q' => 'required|min:4'
+        ]);
+
+        $q = request()->input('q');
+
+        $techniciens=Technicien::where('identifiant','like',"%$q%")
+                                // ->orWhere('numero_tel2','like', "%$q%")
+                                ->paginate(10);
+
+        return view('template.techniciens.search',compact('techniciens'));
+    }
+
+    public function contact_form(Request $request){
+        $mailable = new ContactMessageCreated($request->name, $request->email,$request->message);
+        Mail::to('letechnicien.agree@gmail.com')->send($mailable);
+        emotify('success', 'Votre message a été envoyé; nous vous reviendrons ulterieurement!');
+        // notify()->success('Votre message a été envoyé; nous vous reviendrons ulterieurement!');
+        return redirect()->back();
+
+    }
+
 
 }
 
-                         
+
