@@ -59,7 +59,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <!-- Login Register area Start-->
-    <div class="login-content">
+    <div class="register-content">
         <!-- Login -->
         <div class="nk-block toggled" id="l-login">
             <div class="nk-form">

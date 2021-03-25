@@ -1,4 +1,26 @@
 @include('template.partials.header')
+<div class="container mb-5">
+    <div class="category-banner pb-5 pt-5" style="background-color: #3a980b; color: #FFF">
+        <div class="container">
+            <a href="#"><span class="badge mb-5" style="border: 1px solid #FFF; color: #FFF">Le technicien Agrégé</span></a>
+                <h2 class="topic-title topic-title-solved">Rechercher un technicien Canal +</h2>
+        </div>
+    </div>
+</div>
+
+@if (count($errors)>0)
+<div class="alert alert-danger">
+    <ul class="mb-0 mt-0">
+        @foreach ($errors->all() as $error)
+            <li>
+                {{$error}}
+            </li>
+        @endforeach
+    </ul>
+
+</div>
+
+@endif
     <!-- Main Menu area End-->
 	<!-- Breadcomb area Start-->
 	<div class="breadcomb-area">
@@ -7,58 +29,40 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="breadcomb-list">
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="breadcomb-wp">
 									<div class="breadcomb-icon">
-										<i class="notika-icon notika-edit"></i>
-									</div>
+										<i class="notika-icon notika-search"></i>
+                                    </div>
+
 									<div class="breadcomb-ctn">
-										<h2>Google Maps</h2>
-										<p>Welcome to Notika <span class="bread-ntd">Admin Template</span></p>
+                                    <form action="{{route('technicien.search')}}" method="GET">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <h2>Entrer l'idetifiant du technicien à rechercher</h2>
+                                            <div class="form-group ic-cmp-int float-lb floating-lb">
+
+                                                <div class="nk-int-st">
+                                                        <input type="text" class="form-control" name="q">
+                                                </div>
+                                                <div class="form-ic-cmp">
+                                                    <button type="submit" class="btn btn-lightgreen"> <i class="notika-icon notika-search"></i></button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
-								<div class="breadcomb-report">
-									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
-								</div>
-							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Breadcomb area End-->
-    <!-- Google Map area End-->
-    <div class="google-map-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="google-map-single">
-                        <div id="map2"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="google-map-single sm-res-mg-t-30">
-                        <div id="googleMap"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="google-map-single mg-t-30">
-                        <div id="map86"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="google-map-single mg-t-30">
-                        <div id="map7"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Google Map area End-->
     <!-- Start Footer area-->
     @include('template.partials.footer_script')

@@ -1,61 +1,32 @@
 @include('template.partials.header')
     <!-- Main Menu area End-->
 	<!-- Breadcomb area Start-->
-	<div class="breadcomb-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="breadcomb-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								<div class="breadcomb-wp">
-									<div class="breadcomb-icon">
-										<i class="notika-icon notika-bar-chart"></i>
-									</div>
-									<div class="breadcomb-ctn">
-										<h2>Bar Charts</h2>
-										<p>Welcome to Notika <span class="bread-ntd">Admin Template</span></p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
-								<div class="breadcomb-report">
-									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container mb-5">
+        <div class="category-banner pb-5 pt-5" style="background-color: #3a980b; color: #FFF">
+            <div class="container">
+                <a href="#"><span class="badge mb-5" style="border: 1px solid #FFF; color: #FFF">Le technicien Agrégé</span></a>
+                    <h2 class="topic-title topic-title-solved">Formations</h2>
+            </div>
+        </div>
+    </div>
 	<!-- Breadcomb area End-->
     <!-- Bar Chart area End-->
-    <div class="bar-chart-area">
+    <div class="google-map-area">
         <div class="container">
+
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="bar-chart-wp">
-                        <canvas height="140vh" width="180vw" id="barchart1"></canvas>
+                @foreach ($categs as $categ)
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-5 ">
+                    <div class="google-map-single bg-dark" style="background-color: black;" >
+                        <div id="map2" class="h-80 row align-items-center">&nbsp;&nbsp;&nbsp;&nbsp;<i class="notika-icon notika-file"  style="color:white;font-weight:bold;font-size:15em;text-align:center;"></i>
+                        <div>
+                        <h1 style="color: white;"> &nbsp;&nbsp;&nbsp;&nbsp; <a href="{{route('formations',$categ)}}" style="text-decoration:none;color:greenyellow;">{{$categ->nom}}</a></h1>
+                        </div>
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="bar-chart-wp sm-res-mg-t-30 chart-display-nn">
-                        <canvas height="140vh" width="180vw" id="barchart2"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="bar-chart-wp mg-t-30 chart-display-nn">
-                        <canvas height="140vh" width="180vw" id="barchart3"></canvas>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="bar-chart-wp mg-t-30 chart-display-nn">
-                        <canvas height="140vh" width="180vw" id="barchart4"></canvas>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

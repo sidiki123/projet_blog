@@ -1,15 +1,20 @@
 <!doctype html>
 <html class="no-js" lang="">
-
+    
+{{-- infos@letechnicienagree-bfa.com
+U5TiATb7OH4;PuLG --}}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard One | Notika - Notika Admin Template</title>
+    <title>Le technicien agréé</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
+    @notifyCss
+
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon"  href="{{asset('assets/img/favicon.ico')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -54,296 +59,378 @@
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
-    <!-- modernizr JS
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" defer></script>
+
+
+    <!-- Fonts -->
+
+    <!-- Styles -->
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"><link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Google Fonts
 		============================================ -->
+    {{-- <link href="{{asset('assets/fonts/06_fontsCANAL/CanalDemiRomain.otf')}}" rel="stylesheet"> --}}
+
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style_header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <style >
+
+/* {{asset('assets/fonts/06_fontsCANAL/CanalDemiRomain.otf')}}" */
+        section {
+  width: 100%;
+  display: inline-block;
+  height: 50vh;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.footer-distributed{
+	background: rgb(0, 0, 0);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 36px 'Open Sans', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  lightseagreen;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+  font-weight:400;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #222;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #ffffff;
+  font-weight:400;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color:  lightseagreen;
+	text-decoration: none;;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight:300;
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
+}
+
+        p,a,h1,h2,h3,h4 {
+	margin: 0;
+	padding: 0;
+}
+
+.section-team {
+	font-family: "Poppins", sans-serif;
+	padding: 80px 0;
+}
+
+.section-team .header-section {
+	margin-bottom: 50px;
+}
+
+.section-team .header-section .small-title {
+    margin-bottom: 25px;
+	font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.section-team .header-section .title {
+    font-weight: 700;
+    width: 100%
+    font-size: 45px;
+    color: rgb(0, 0, 0);
+}
+
+.section-team .single-person {
+	margin-top: 30px;
+	padding: 30px;
+	background-color: #000000;
+	border-radius: 5px;
+}
+
+.section-team .single-person:hover {
+	background: linear-gradient(to right, #178323, #148a07);
+}
+
+.section-team .single-person .person-image {
+    position: relative;
+    margin-bottom: 50px;
+    border-radius: 50%;
+    border: 4px dashed transparent;
+    transition: padding .3s;
+}
+
+.section-team .single-person:hover .person-image {
+    border: 4px dashed #fff;
+}
+
+.section-team .single-person .person-image img {
+	width: 100%;
+    border-radius: 50%;
+}
+
+.section-team .single-person .person-image .icon {
+	position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: linear-gradient(to right, #016cec, #00b5f7);
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.section-team .single-person:hover .person-image .icon {
+	background: none;
+	background-color: #fff;
+	color: #016cec;
+}
+
+.section-team .single-person .person-info .full-name {
+	margin-bottom: 10px;
+	font-size: 28px;
+    font-weight: 700;
+}
+
+.section-team .single-person .person-info .speciality {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #016cec;
+}
+
+.section-team .single-person:hover .full-name,
+.section-team .single-person:hover .speciality {
+	color: #fff;
+}
+@font-face {
+        font-family:'CanalBoldRomain';
+        src: url('/fonts/CanalBoldRomain.otf');
+        font-style: normal;
+        font-weight: normal;
+    }
+
+    </style>
+<link rel="stylesheet" href="{{asset('css/canal.css')}}">
+    <!-- font awesome CSS
+
+
+
+        ============================================ -->
+
     <script src="{{asset('assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
+    @yield('extra-js')
+
 </head>
 
-<body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- Start Header Top Area -->
-    <div class="header-top-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="logo-area"> 
-                        <a href="#"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" /></a>
+<body style="font-family: CanalBoldRomain">
+
+<div id="app" >
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: black; width:100%;">
+        <a href="{{ route('index') }}" style="font-size:32px;color:white;">Le Technicien Agréé</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto " style="margin-right: 5em;">
+                @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}"  style="font-weight: 900;font-size:15px">{{ __('Se connecter') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}"  style="font-weight: 900;font-size:15px">{{ __('Creer un compte') }}</a>
+                                </li>
+                            @endif
+                        @else
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="login_dd"  style="font-weight: 900" role="button"id="navbarDropdown" style="text-align: right;" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu mr-5 " aria-labelledby="login_dd" style="margin-right:20 px;left:-100%;">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();"  style="font-weight: 700;font-size:15px">
+                         {{ __('se deconnecter') }}
+                     </a> <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    @can('manage-users')
+                    <a class="dropdown-item" href="{{ route('admin.users.index') }}"  style="font-weight: 700;font-size:15px">
+                        Tableau de bord                        </a>
+                    @endcan
                     </div>
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="header-top-menu">
-                        <ul class="nav navbar-nav notika-top-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-search"></i></span></a>
-                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
-                                    <div class="search-input">
-                                        <i class="notika-icon notika-left-arrow"></i>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
-                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
-                                        <h2>Messages</h2>
-                                    </div>
-                                    <div class="hd-message-info">
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Jonathan Morris</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/4.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Fredric Mitchell</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Glenn Jecobs</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="hd-mg-va">
-                                        <a href="#">View All</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item nc-al"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-alarm"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>3</span></div></a>
-                                <div role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
-                                        <h2>Notification</h2>
-                                    </div>
-                                    <div class="hd-message-info">
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Jonathan Morris</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/4.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Fredric Mitchell</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Glenn Jecobs</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="hd-mg-va">
-                                        <a href="#">View All</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>2</span></div></a>
-                                <div role="menu" class="dropdown-menu message-dd task-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
-                                        <h2>Tasks</h2>
-                                    </div>
-                                    <div class="hd-message-info hd-task-info">
-                                        <div class="skill">
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>HTML5 Validation Report</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s"> <span>95%</span>
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>Google Chrome Extension</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="85%" style="width: 85%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>85%</span> </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>Social Internet Projects</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="75%" style="width: 75%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>75%</span> </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>Bootstrap Admin</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="93%" style="width: 65%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>65%</span> </div>
-                                            </div>
-                                            <div class="progress progress-bt">
-                                                <div class="lead-content">
-                                                    <p>Youtube App</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="55%" style="width: 55%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>55%</span> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="hd-mg-va">
-                                        <a href="#">View All</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-chat"></i></span></a>
-                                <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
-                                        <h2>Chat</h2>
-                                    </div>
-                                    <div class="search-people">
-                                        <i class="notika-icon notika-left-arrow"></i>
-                                        <input type="text" placeholder="Search People" />
-                                    </div>
-                                    <div class="hd-message-info">
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="img/post/1.jpg" alt="" />
-                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Available</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Jonathan Morris</h3>
-                                                    <p>Last seen 3 hours ago</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="img/post/4.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Fredric Mitchell</h3>
-                                                    <p>Last seen 2 minutes ago</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="img/post/1.jpg" alt="" />
-                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Available</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="img/post/2.jpg" alt="" />
-                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Glenn Jecobs</h3>
-                                                    <p>Available</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="hd-mg-va">
-                                        <a href="#">View All</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                </li>
+                @endguest
+            </ul>
         </div>
-    </div>
+    </nav>
+</div>
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
     <div class="mobile-menu-area">
@@ -353,94 +440,75 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
-                                <li><a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
-                                    <ul class="collapse dropdown-header-top">
-                                    <li><a href="{{route('home')}}">Dashboard One</a></li>
-                                        <li><a href="index-2.html">Dashboard Two</a></li>
-                                        <li><a href="index-3.html">Dashboard Three</a></li>
-                                        <li><a href="index-4.html">Dashboard Four</a></li>
-                                        <li><a href="analytics.html">Analytics</a></li>
-                                        <li><a href="widgets.html">Widgets</a></li>
-                                    </ul>
+                                <li><a data-toggle="collapse" data-target="#Charts" href="#">ACCUEIL </a>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#demoevent" href="#">Email</a>
+                                {{-- <li><a data-toggle="collapse" data-target="#demoevent" href="#">ESPACE ABONNES</a>
                                     <ul id="demoevent" class="collapse dropdown-header-top">
-                                        <li><a href="inbox.html">Inbox</a></li>
-                                        <li><a href="view-email.html">View Email</a></li>
-                                        <li><a href="compose-email.html">Compose Email</a></li>
+
+                                        <li><a href="{{route('register')}}">S'inscrire</a>
+                                        </li>
+                                        <li><a href="https://www.canalplus-afrique.com/bf">MyCanal</a>
+                                        </li>
+                                    <li><a href="{{route('offres')}}">Offre en cours</a>
+                                        </li>
                                     </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Interface</a>
+                                </li> --}}
+                                <li><a data-toggle="collapse" data-target="#democrou" href="#">TECHNICIENS</a>
                                     <ul id="democrou" class="collapse dropdown-header-top">
-                                        <li><a href="animations.html">Animations</a></li>
-                                        <li><a href="google-map.html">Google Map</a></li>
-                                        <li><a href="data-map.html">Data Maps</a></li>
-                                        <li><a href="code-editor.html">Code Editor</a></li>
-                                        <li><a href="image-cropper.html">Images Cropper</a></li>
-                                        <li><a href="wizard.html">Wizard</a></li>
+                                        <li><a href="{{route('animations')}}">Contacter un technicien </a>
+                                        </li>
+                                        <li><a href="{{route('google_map')}}">Verifier l'identifiant d'un technicien</a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
+                                @can('manage-posts')
+                                <li><a data-toggle="collapse" data-target="#demolibra" href="#">ESPACE TECHNICIENS </a>
                                     <ul id="demolibra" class="collapse dropdown-header-top">
-                                        <li><a href="flot-charts.html">Flot Charts</a></li>
-                                        <li><a href="bar-charts.html">Bar Charts</a></li>
-                                        <li><a href="line-charts.html">Line Charts</a></li>
-                                        <li><a href="area-charts.html">Area Charts</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
-                                    <ul id="demodepart" class="collapse dropdown-header-top">
-                                        <li><a href="normal-table.html">Normal Table</a></li>
-                                        <li><a href="data-table.html">Data Table</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#demo" href="#">Forms</a>
-                                    <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="form-elements.html">Form Elements</a></li>
-                                        <li><a href="form-components.html">Form Components</a></li>
-                                        <li><a href="form-examples.html">Form Examples</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">App views</a>
-                                    <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                        <li><a href="notification.html">Notifications</a>
+                                        <li><a href="{{route('bar_charts')}}">Formations</a>
                                         </li>
-                                        <li><a href="alert.html">Alerts</a>
+                                        <li><a href="{{route('technicien.posts.index')}}">Operations techniques</a>
                                         </li>
-                                        <li><a href="modals.html">Modals</a>
-                                        </li>
-                                        <li><a href="buttons.html">Buttons</a>
-                                        </li>
-                                        <li><a href="tabs.html">Tabs</a>
-                                        </li>
-                                        <li><a href="accordion.html">Accordion</a>
-                                        </li>
-                                        <li><a href="dialog.html">Dialogs</a>
-                                        </li>
-                                        <li><a href="popovers.html">Popovers</a>
-                                        </li>
-                                        <li><a href="tooltips.html">Tooltips</a>
-                                        </li>
-                                        <li><a href="dropdown.html">Dropdowns</a>
+                                        <li><a href="{{route('technicien.posts.create')}}">Créer un post</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages</a>
-                                    <ul id="Pagemob" class="collapse dropdown-header-top">
-                                        <li><a href="contact.html">Contact</a>
-                                        </li>
-                                        <li><a href="invoice.html">Invoice</a>
-                                        </li>
-                                        <li><a href="typography.html">Typography</a>
-                                        </li>
-                                        <li><a href="color.html">Color</a>
-                                        </li>
-                                        <li><a href="login-register.html">Login Register</a>
-                                        </li>
-                                        <li><a href="404.html">404 Page</a>
-                                        </li>
-                                    </ul>
+                                @endcan
+                                <li><a  data-target="#demodepart" href="{{route('typography')}}">CONTACTER CANAL+</a>
                                 </li>
+                                <li><a  data-target="#Miscellaneousmob" href="{{route('a_propos')}}">A PROPOS</a>
+                                </li>
+                                @guest
+                                <li>
+                                    <a c href="{{ route('login') }}">{{ __('Se connecter') }}</a>
+                                </li>
+                                @if (Route::has('register'))
+                                            <li >
+                                                <a  href="{{ route('register') }}">{{ __('Creer un compte') }}</a>
+                                            </li>
+                                        @endif
+                                        @else
+                                        <li >
+                                            <a data-toggle="collapse" data-target="#dem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                {{ Auth::user()->name }}
+                                            </a>
+                                            <ul id="dem" class="collapse dropdown-header-top">
+                                            <li><a  href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                              document.getElementById('logout-form').submit();">
+                                                 {{ __('Se deconnecter') }}
+                                             </a>
+                                            </li>
+                                            <li>@can('manage-users')
+                                                <a  href="{{ route('admin.users.index') }}"
+                                                  >Liste des utilisateurs
+                                                </a>
+                                                @endcan
+                                            </li>
+                                            </ul>
+                                        </li>
+
+                                    @endguest
+
                             </ul>
                         </nav>
                     </div>
@@ -450,143 +518,69 @@
     </div>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
-    <div class="main-menu-area mg-tb-40">
+    <div class="main-menu-area" style="margin-bottom: 2em;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="active"><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
+                        <li class="{{set_active_route('index')}}"><a style="cursor: pointer;" href="{{route('index')}}"><i class="fa fa-home fa-1x" aria-hidden="true"></i>Accueil</a>
                         </li>
-                        <li><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-mail"></i> Email</a>
+                        {{-- <li><a data-toggle="tab" href="#mailbox"><i class="fa fa-user fa-1x" aria-hidden="true"></i>Abonnes</a>
+                        </li> --}}
+                        <li class="{{set_active_route('#')}}"><a data-toggle="tab" href="#Interface"><i class="fa fa-user-secret fa-1x" aria-hidden="true"></i>
+                            Techniciens</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Interface</a>
+                        @can('manage-posts')
+                        <li class="{{set_active_route('#')}}"><a data-toggle="tab" href="#Charts"><i class="fa fa-book fa-1x" aria-hidden="true"></i>Espace Technicien</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
+                        @endcan
+
+                        <li class="{{set_active_route('typography')}}"><a  href="{{route('typography')}}"><i class="fa fa-envelope fa-1x" aria-hidden="true"></i> Nous contacter</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Tables</a>
-                        </li>
-                        <li><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> Forms</a>
-                        </li>
-                        <li><a data-toggle="tab" href="#Appviews"><i class="notika-icon notika-app"></i> App views</a>
-                        </li>
-                        <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Pages</a>
+                        <li class="{{set_active_route('a_propos')}}"><a  href="{{route('a_propos')}}"><i class="fa fa-question-circle fa-1x" aria-hidden="true"></i>A propos</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
+
+                        {{-- <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('index')}}">Dashboard One</a>
+                                <li><a href="{{route('register')}}">S'inscrire</a>
                                 </li>
-                                <li><a href="{{route('index2')}}">Dashboard Two</a>
+                                <li><a href="https://www.canalplus-afrique.com/bf">MyCanal</a>
                                 </li>
-                                <li><a href="{{route('index3')}}">Dashboard Three</a>
-                                </li>
-                                <li><a href="{{route('index4')}}">Dashboard Four</a>
-                                </li>
-                                <li><a href="{{route('analitycs')}}">Analytics</a>
-                                </li>
-                                <li><a href="{{route('widgets')}}">Widgets</a>
+                            <li><a href="{{route('offres')}}">Offre en cours</a>
                                 </li>
                             </ul>
-                        </div>
-                        <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('inbox')}}">Inbox</a>
-                                </li>
-                                <li><a href="{{route('view_email')}}">View Email</a>
-                                </li>
-                                <li><a href="{{route('compose_email')}}">Compose Email</a>
-                                </li>
-                            </ul>
-                        </div>
+                        </div> --}}
                         <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('animations')}}">Animations</a>
+                                <li class="{{set_active_route('animations')}}"><a href="{{route('animations')}}">Contacter un technicien </a>
                                 </li>
-                                <li><a href="{{route('google_map')}}">Google Map</a>
+                                <li class="{{set_active_route('google_map')}}"><a href="{{route('google_map')}}">Verifier l'identifiant d'un technicien</a>
                                 </li>
-                                <li><a href="{{route('data_map')}}">Data Maps</a>
-                                </li>
-                                <li><a href="{{route('code_editor')}}">Code Editor</a>
-                                </li>
-                                <li><a href="{{route('image_cropper')}}">Images Cropper</a>
-                                </li>
-                                <li><a href="{{route('wizard')}}">Wizard</a>
-                                </li>
+
                             </ul>
                         </div>
+                        @can('manage-posts')
                         <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('flot_charts')}}">Flot Charts</a>
+                                <li class="{{set_active_route('bar_charts')}}"><a href="{{route('bar_charts')}}">Formations</a>
                                 </li>
-                                <li><a href="{{route('bar_charts')}}">Bar Charts</a>
+                                <li class="{{set_active_route('technicien.posts.index')}}"><a href="{{route('technicien.posts.index')}}">Operations techniques</a>
                                 </li>
-                                <li><a href="{{route('line_charts')}}">Line Charts</a>
-                                </li>
-                                <li><a href="{{route('area_charts')}}">Area Charts</a>
+                                <li class="{{set_active_route('technicien.posts.create')}}"><a href="{{route('technicien.posts.create')}}">Créer un post</a>
                                 </li>
                             </ul>
                         </div>
-                        <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('normal_table')}}">Normal Table</a>
-                                </li>
-                                <li><a href="{{route('data_table')}}">Data Table</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('form_elements')}}">Form Elements</a>
-                                </li>
-                                <li><a href="{{route('form_components')}}">Form Components</a>
-                                </li>
-                                <li><a href="{{route('form_examples')}}">Form Examples</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Appviews" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('notification')}}">Notifications</a>
-                                </li>
-                                <li><a href="{{route('alert')}}">Alerts</a>
-                                </li>
-                                <li><a href="{{route('modals')}}">Modals</a>
-                                </li>
-                                <li><a href="{{route('button')}}">Buttons</a>
-                                </li>
-                                <li><a href="{{route('tabs')}}">Tabs</a>
-                                </li>
-                                <li><a href="{{route('accordion')}}">Accordion</a>
-                                </li>
-                                <li><a href="{{route('dialog')}}">Dialogs</a>
-                                </li>
-                                <li><a href="{{route('popovers')}}">Popovers</a>
-                                </li>
-                                <li><a href="{{route('tooltips')}}">Tooltips</a>
-                                </li>
-                                <li><a href="{{route('dropdown')}}">Dropdowns</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="{{route('contact')}}">Contact</a>
-                                </li>
-                                <li><a href="{{route('invoice')}}">Invoice</a>
-                                </li>
-                                <li><a href="{{route('typography')}}">Typography</a>
-                                </li>
-                                <li><a href="{{route('color')}}">Color</a>
-                                </li>
-                                <li><a href="{{route('login_register')}}">Login Register</a>
-                                </li>
-                                <li><a href="{{route('error')}}">404 Page</a>
-                                </li>
-                            </ul>
-                        </div>
+                        @endcan
+
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('notify::messages')

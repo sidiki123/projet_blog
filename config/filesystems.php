@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path('app/public'),
         ],
 
         'public' => [
@@ -66,6 +66,14 @@ return [
         ],
 
     ],
+
+    // Hello everyone ... I have a web application that I have to make within 2 months and
+    //  it consists of first detecting medical devices connected to a computer network and
+    //   then registering them automatically. I was thinking of going on JHISPTER but I have
+    //   no clues to start because I did not network. Could you please tell me how you would
+    //    go about developing a web application that basically manages to detect medical equipment
+    //     on a network. That is to say which language, Framework or libraries are you going to use and why. Thank you
+
 
     /*
     |--------------------------------------------------------------------------
