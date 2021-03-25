@@ -34,12 +34,15 @@
                         <label for="email" class="control-label">Adresse mail </label>
                         <input type="email" name="email" id="email" class="form-control" required="required">
                         {!!$errors->first('email','<span class="help-block">:message </span>')!!}
+<<<<<<< HEAD
                     </div>
 
                     <div class="form-group {{$errors->has('telephone') ? 'has-error' : ''}}">
                         <label for="email" class="control-label">Numero de téléphone </label>
                         <input type="tel" name="telephone" id="telephone" class="form-control" required="required">
                         {!!$errors->first('telephone','<span class="help-block">:message </span>')!!}
+=======
+>>>>>>> b2645d71d6389841903320874701eeda4609468c
                     </div>
 
                     <div class="form-group {{$errors->has('message') ? 'has-error' : ''}}">

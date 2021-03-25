@@ -18,11 +18,14 @@
 					<p>+226 25495000</p>
 				</div>
 
+<<<<<<< HEAD
                 <div>
 					<i class="fa fa-whatsapp"></i>
 					<p> <a href="http://wa.me/22654442727" target="_blank" rel="noopener noreferrer">+226 54442727</a> </p>
 				</div>
 
+=======
+>>>>>>> b2645d71d6389841903320874701eeda4609468c
 				<div>
 					<i class="fa fa-envelope"></i>
 					<p><a href="mailto:letechnicien.agree@gmail.com">letechnicien.agree@gmail.com</a></p>
